@@ -1,0 +1,15 @@
+{% extends 'blog/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+
+<div class='form-section'>
+<form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type='submit' class='btn btn-primary'>Registrate!</button>
+</form>
+</div>
+<hr>
+<h3>Do you have an account?</h3><a href="{% url 'user' %}">Enter</a>
+
+{% endblock main_section %}

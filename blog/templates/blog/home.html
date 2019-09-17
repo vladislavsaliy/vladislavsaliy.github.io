@@ -1,0 +1,56 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+{% for post in news %}
+<div class = "alert alert-light p-3 mt-3">
+<p><h2>{{ post.title }}</h2></p>
+<p>{{ post.text|striptags|truncatechars:200 }}</p>
+{% if post.avtor %}
+<div class='row'>
+    <div class='mr-3'>
+        {% if post.avtor.profile.img %}
+        <img src="{{ post.avtor.profile.img.url }}" alt = '{{ post.avtor }}' class="user_image">
+        {% else %}
+        <img src="/pictures/default.jpg" alt = '{{ post.avtor }}' class="user_image">
+        {% endif %}
+
+    </div>
+<div>
+        <p><b>user:</b> <mark>{{ post.avtor }}</mark></p>
+        {% else %}
+        <p><b>user:</b>  Admin </p>
+        {% endif %}
+        <span class="text-muted"><b>Date:</b> {{ post.date|date:"d F Y : H:i:s" }}</span>
+</div>
+    </div>
+    <a href="{% url 'news-detail' post.id %}" class="btn btn-primary mt-3">Continue reading</a>
+
+
+</div>
+{% endfor %}
+
+
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href="{% url 'blog-home'%}" class="btn btn-primary">Begining</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Previous</a>
+    {% endif %}
+
+    {% for num in page.page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        <a><button class="btn btn-outline-primary">{{ num }}</button></a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class="btn btn-outline-primary">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary">Last add's</a>
+    {% endif %}
+{% endif %} 
+
+
+
+
+
+{% endblock main_section %}

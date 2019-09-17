@@ -1,0 +1,32 @@
+.alert-light{
+    border: 1px solid silver
+}
+
+.form-section {
+    background-color: #E6E6FA;
+    padding: 20px;
+    border: 1px solid silver;
+
+}
+
+.user_image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.form-section > h2 {
+    color: #C0C0C0;
+    margin-bottom: 10px;
+}
+
+footer {
+    padding: 30px;
+    background: #333a41;
+    color: #f1efef
+    
+}
+
+footer a {color: #788c9e}
+footer a:hover {color: #79b0e2}

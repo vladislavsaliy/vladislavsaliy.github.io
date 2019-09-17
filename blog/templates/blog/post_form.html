@@ -1,0 +1,15 @@
+{% extends 'blog/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+
+<div class='form-section mt-3'>
+        <h3>Add post</h3>
+<form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type='submit' class='btn btn-primary'>Add post!</button>
+</form>
+</div>
+
+
+{% endblock main_section %}

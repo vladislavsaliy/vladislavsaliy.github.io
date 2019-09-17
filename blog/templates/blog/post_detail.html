@@ -1,0 +1,37 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+
+<div class = "alert alert-light p-3 mt-3">
+    <a href = "{% url 'blog-home' %}">Return</a>
+    <p><h2>{{ object.title }}</h2></p>
+<p>{{ object.text|safe }}</p>
+{% if object.avtor %}
+<div class='row'>
+    <div class='mr-3'>
+        {% if object.avtor.profile.img %}
+        <img src="{{ object.avtor.profile.img.url }}" alt = '{{ object.avtor }}' class="user_image">
+        {% else %}
+        <img src="/pictures/default.jpg" alt = '{{ object.avtor }}' class="user_image">
+        {% endif %}
+
+    </div>
+<div>
+        <p><b>user:</b> <mark><a href="{% url 'user-news' object.avtor %}">{{ object.avtor }}</a>{</mark></p>
+        {% else %}
+        <p><b>user:</b>  Admin </p>
+        {% endif %}
+        <span class="text-muted"><b>Date:</b> {{ object.date|date:"d F Y : H:i:s" }}</span>
+</div>
+    </div>
+    {% if object.avtor == user %}
+    <a href="{% url 'news-update' object.id %}" class="btn btn-primary mt-3 ">Update post</a>
+    <a href="{% url 'news-delete' object.id %}" class="btn btn-outline-danger mt-3 mr-5">Delete</a>
+    {% endif %}
+
+
+</div>
+
+
+
+
+{% endblock main_section %}

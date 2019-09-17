@@ -1,0 +1,14 @@
+{% extends 'blog/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<h2 class='mt-3'>Authorization</h2>
+<div class='form-section rounded mt-3'>
+       
+<form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type='submit' class='btn btn-primary'>Enter</button>
+</form>
+</div>
+
+{% endblock main_section %}
